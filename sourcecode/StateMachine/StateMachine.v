@@ -32,6 +32,10 @@ module StateMachine(
 	output wire DEAD_OUT,
 	output wire [1:0] DIR_OUT,
 	output wire [7:0] SCORE_OUT
+// if debug	
+	,
+	output wire [2:0] state_out
+// fi
    );
 	
 	parameter INIT = 3'b000, START = 3'b001, GENFOOD = 3'b010, RENDER = 3'b011,
@@ -39,6 +43,9 @@ module StateMachine(
 
 	reg [2:0] state = INIT;
 	reg [2:0] next_state = INIT;
+// if debug	
+	assign state_out = state;
+// fi
 	
 	reg generate_food_reg = 1'b1;
 	wire generate_food_out;
@@ -63,7 +70,7 @@ module StateMachine(
 	end
 	
 	always@(SCORE) begin
-		generate_food_reg = 1'b1;//
+		generate_food_reg = 1'b1;
 	end
 	
 	assign CLEAR = (state == INIT) ? 1 : 0;
@@ -71,7 +78,7 @@ module StateMachine(
 	assign generate_food = (state == GENFOOD) ? generate_food_out : 0;
 	assign FLASH = (state == RENDER) ? 1 : 0;
 	assign EN = (state == MOVE) ? 1 : 0;
-	assign DEAD_OUT = DEAD;
+	assign DEAD_OUT = (state == END) ? 1 : 0;
 	
 	assign SCORE_OUT = SCORE;
 	assign DIR_OUT = DIR;
