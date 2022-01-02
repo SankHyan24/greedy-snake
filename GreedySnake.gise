@@ -71,19 +71,11 @@
       <status xil_pn:value="WarningsGenerated"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
       <status xil_pn:value="InputAdded"/>
       <status xil_pn:value="InputChanged"/>
-      <outfile xil_pn:name="VGA.lso"/>
-      <outfile xil_pn:name="VGA.ngc"/>
-      <outfile xil_pn:name="VGA.ngr"/>
-      <outfile xil_pn:name="VGA.prj"/>
-      <outfile xil_pn:name="VGA.stx"/>
-      <outfile xil_pn:name="VGA.syr"/>
-      <outfile xil_pn:name="VGA.xst"/>
-      <outfile xil_pn:name="VGA_xst.xrpt"/>
-      <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
-      <outfile xil_pn:name="webtalk_pn.xml"/>
-      <outfile xil_pn:name="xst"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
   </transforms>
 
