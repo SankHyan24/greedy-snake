@@ -108,24 +108,53 @@ module Texture(
 		else
 			pixel_data= GREEN;
 		4'b1000:// Tail Left
-		// if((x_pos+y_pos/4>8)&&(x_pos-y_pos/4<24))
-		// 	pixel_data= BLUE;
-		// else
+		if((x_pos>8)&&(x_pos<24)&&y_pos<16)
+			pixel_data= BLUE;
+		else if((2*x_pos>y_pos)&&(2*x_pos+y_pos<64)&&y_pos>16)
+			pixel_data= BLUE;
+		else
 			pixel_data= GREEN;
 		4'b1001:// Tail Right
-			pixel_data=BLACK;
+			if((x_pos>8)&&(x_pos<24)&&y_pos>=16)
+			pixel_data= BLUE;
+		else if((2*x_pos>y_pos+32)&&(2*x_pos+y_pos<32)&&y_pos<16)
+			pixel_data= BLUE;
+		else
+			pixel_data= GREEN;
 		4'b1010:// Tail Up
-			pixel_data=BLACK;
+		if((y_pos>8)&&(y_pos<24)&&x_pos<16)
+			pixel_data= BLUE;
+		else if((2*y_pos>x_pos)&&(2*y_pos+x_pos<64)&&x_pos>16)
+			pixel_data= BLUE;
+		else
+			pixel_data= GREEN;
 		4'b1011:// Tail Down
-			pixel_data=BLACK;
+		if((y_pos>8)&&(y_pos<24)&&x_pos>=16)
+			pixel_data= BLUE;
+		else if((2*y_pos>x_pos+32)&&(2*y_pos+x_pos<32)&&x_pos<16)
+			pixel_data= BLUE;
+		else
+			pixel_data= GREEN;
 		4'b1100:// Head Left
-			pixel_data=BLACK;
+		if((x_pos>8)&&(x_pos<24)&&y_pos>=8)
+			pixel_data= PURPLE;
+		else
+			pixel_data= GREEN;
 		4'b1101:// Head Right
-			pixel_data=BLACK;
+		if((x_pos>8)&&(x_pos<24)&&y_pos<24)
+			pixel_data= PURPLE;
+		else
+			pixel_data= GREEN;
 		4'b1110:// Head Up
-			pixel_data=BLACK;
+		if((y_pos>8)&&(y_pos<24)&&x_pos>=8)
+			pixel_data= PURPLE;
+		else
+			pixel_data= GREEN;
 		4'b1111:// Head Down
-			pixel_data=BLACK;
+		if((y_pos>8)&&(y_pos<24)&&x_pos<=24)
+			pixel_data= PURPLE;
+		else
+			pixel_data= GREEN;
 		endcase
 	end
 	
