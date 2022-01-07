@@ -28,16 +28,21 @@ module mapping(
 	vgaclk,
 	map_x,
 	map_y,
-	ram,
+	//ram,
 	texture
     );
 	input vgaclk;
 	input [3:0]map_x;
 	input [3:0]map_y;
-	input [3:0]ram;
+	//input [3:0]ram;
 	output reg [3:0]texture;//buffer
 	initial begin
 		texture = 4'b0000;
+	end
+	reg [6:0]counter;
+	always @(posedge vgaclk)begin
+	//	counter<=counter+1;
+		texture<=map_x;//counter[3:0];
 	end
 	// Here, get the data in the RAM
 	// and then update the data in the texture buffer
@@ -89,26 +94,26 @@ module Texture(
 			pixel_data= GREEN;
 		4'b0100:// Body Left Up
 		if((x_pos<8&&y_pos<8)||(x_pos>24||y_pos>24))
-			pixel_data= BLUE;
-		else
 			pixel_data= GREEN;
+		else
+			pixel_data= BLUE;
 		4'b0101:// Body Right Up
 		if((x_pos<8&&y_pos>24)||(x_pos>24||y_pos<8))
-			pixel_data= BLUE;
-		else
 			pixel_data= GREEN;
+		else
+			pixel_data= BLUE;
 		4'b0110:// Body Left Down
 		if((x_pos>24&&y_pos<8)||(x_pos<8||y_pos>24))
-			pixel_data= BLUE;
-		else
 			pixel_data= GREEN;
+		else
+			pixel_data= BLUE;
 		4'b0111:// Body Right Down
 		if((x_pos>24&&y_pos>24)||(x_pos<8||y_pos<8))
-			pixel_data= BLUE;
-		else
 			pixel_data= GREEN;
+		else
+			pixel_data= BLUE;
 		4'b1000:// Tail Left
-		if((x_pos>8)&&(x_pos<24)&&y_pos<16)
+		if((x_pos>8)&&(x_pos<24)&&y_pos<=16)
 			pixel_data= BLUE;
 		else if((2*x_pos>y_pos)&&(2*x_pos+y_pos<64)&&y_pos>16)
 			pixel_data= BLUE;
@@ -117,12 +122,12 @@ module Texture(
 		4'b1001:// Tail Right
 			if((x_pos>8)&&(x_pos<24)&&y_pos>=16)
 			pixel_data= BLUE;
-		else if((2*x_pos>y_pos+32)&&(2*x_pos+y_pos<32)&&y_pos<16)
+		else if((2*x_pos+y_pos>32)&&(2*x_pos-y_pos<32)&&y_pos<16)
 			pixel_data= BLUE;
 		else
 			pixel_data= GREEN;
 		4'b1010:// Tail Up
-		if((y_pos>8)&&(y_pos<24)&&x_pos<16)
+		if((y_pos>8)&&(y_pos<24)&&x_pos<=16)
 			pixel_data= BLUE;
 		else if((2*y_pos>x_pos)&&(2*y_pos+x_pos<64)&&x_pos>16)
 			pixel_data= BLUE;
@@ -131,7 +136,7 @@ module Texture(
 		4'b1011:// Tail Down
 		if((y_pos>8)&&(y_pos<24)&&x_pos>=16)
 			pixel_data= BLUE;
-		else if((2*y_pos>x_pos+32)&&(2*y_pos+x_pos<32)&&x_pos<16)
+		else if((2*y_pos+x_pos>32)&&(2*y_pos-x_pos<32)&&x_pos<16)
 			pixel_data= BLUE;
 		else
 			pixel_data= GREEN;
