@@ -25,12 +25,14 @@
 // Mapping the location to the texture.
 // return the texture Type
 module mapping(
-	vgaclk,
+ vgaclk,
+	data_out_texture,
 	map_x,
 	map_y,
 	//ram,
 	texture
     );
+	 input [3:0]data_out_texture;
 	input vgaclk;
 	input [3:0]map_x;
 	input [3:0]map_y;

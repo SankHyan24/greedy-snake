@@ -25,7 +25,8 @@ input clk_25,
 input rst,
 input	    [8:0] 	pixel_xpos,
 input 	    [9:0]	pixel_ypos,
-output  reg [11:0]	pixel_data);
+output  reg [11:0]	pixel_data
+);
     parameter H_DISP = 10'd512;
     parameter V_DISP = 11'd640;
     localparam WHITE = 12'b1111_1111_1111;
