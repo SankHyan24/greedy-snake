@@ -25,6 +25,7 @@ module StateMachine(
 	input wire OVER,
 	input wire DEAD,
 	input wire [1:0] DIR,
+	input wire GEN_DONE,
 	output wire RST,
 	output wire CLEAR,
 	output wire FLASH,
@@ -60,7 +61,7 @@ module StateMachine(
 		case (state)
 			INIT: 	next_state = (FEEDBACK == 1) ? START : INIT;
 			START:	next_state = GENFOOD;
-			GENFOOD:	next_state = RENDER;
+			GENFOOD:	next_state = (GEN_DONE == 1) ? RENDER : GENFOOD;
 			RENDER:	
 			begin
 				next_state = (OVER == 1) ? MOVE : RENDER;
