@@ -5,5 +5,5 @@
 !/img/
 !/.gitignore
 !/README.md
-!/GreedySnake.gise
-!/GreedySnake.xise
+#!/GreedySnake.gise
+#!/GreedySnake.xise
