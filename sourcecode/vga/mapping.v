@@ -29,12 +29,14 @@ module mapping(
 	data_out_texture,
 	map_x,
 	map_y,
+	//ram,
 	texture
     );
 	 input [3:0]data_out_texture;
 	input vgaclk;
 	input [3:0]map_x;
 	input [3:0]map_y;
+	//input [3:0]ram;
 	output reg [3:0]texture;//buffer
 	initial begin
 		texture = 4'b0000;
@@ -75,7 +77,7 @@ module Texture(
 	always @(posedge clk)begin
 		case(type)
 		// Basement
-		4'b0111:// Ground
+		4'b0000:// Ground
 			pixel_data= GREEN;
 		4'b0001:// Food
 		if(x_pos>8&&x_pos<24&&y_pos>8&&y_pos<24)
@@ -107,7 +109,7 @@ module Texture(
 			pixel_data= GREEN;
 		else
 			pixel_data= BLUE;
-		4'b0000:// Body Right Down
+		4'b0111:// Body Right Down
 		if((x_pos>24&&y_pos>24)||(x_pos<8||y_pos<8))
 			pixel_data= GREEN;
 		else
