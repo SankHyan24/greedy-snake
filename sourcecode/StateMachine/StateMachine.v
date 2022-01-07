@@ -30,6 +30,7 @@ module StateMachine(
 	output wire FLASH,
 	output wire generate_food,
 	output wire DEAD_OUT,
+	output wire EN,
 	output wire [1:0] DIR_OUT,
 	output wire [7:0] SCORE_OUT
 // if debug	
