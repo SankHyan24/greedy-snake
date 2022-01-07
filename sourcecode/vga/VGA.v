@@ -23,7 +23,7 @@
 module VGA(
     input clk_100mhz,
     input RSTN,
-	 input GetType,
+	input [3:0]GetType,
     output HSYNC,
     output VSYNC,
     output wire [3:0] Red,
