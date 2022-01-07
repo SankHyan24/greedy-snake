@@ -60,4 +60,12 @@ module Top(
 	DispNum dispNum(.HEXs({8'b00000000, SCORE_DISP}), .LES(4'b1100), .points(4'b0000), .clk(clk), .RST(1'b0), 
 						 .AN(AN), .Segment(SEGMENT));
 
+	VGA vga(.clk_100mhz(), .RSTN(FLASH), 
+			  .HSYNC(), .VSYNC(), .Red(), .Green(), .Blue());
+	
+	GEN_FOOD gen_food();
+	
+	GreedySnake_movement movement(.start(RST), .clk(clk), .move(EN), .DIR(DIR_OUT));
+	
+	ram ram_L(.clk_i(clk), .rst_i(), .wr_en_i(), .rd_en_i(), .addr_i(), .data_io());
 endmodule
